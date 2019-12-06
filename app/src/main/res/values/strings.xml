@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ProyectoIntent</string>
+    <string name="bRojo">Rojo</string>
+    <string name="bAmarillo">Amarillo</string>
+    <string name="campo_texto">Texto1</string>
+    <string name="bNavegador">Navegador</string>
+    <string name="bSuma">Sumar</string>
+    <string name="color">Color</string>
+    <string name="textview">Resultado</string>
+    <string name="texto1">Texto1</string>
+    <string name="texto2">Texto2</string>
+    <string name="bVolver">Volver</string>
+    <string name="cajaText">result</string>
+    <string name="bCamara">bCamara</string>
+    <string name="imageView">imageView</string>
+</resources>
