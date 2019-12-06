@@ -5,23 +5,13 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.EditText
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_suma.*
 import org.jetbrains.anko.browse
 import android.widget.Toast
-import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
-import androidx.annotation.IntegerRes
 
 
 const val SUMA_REQUEST = 1
@@ -44,7 +34,6 @@ class MainActivity : Activity() {
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_REQUEST_CODE)
         }
-
 
         bRojo = findViewById(R.id.bRojo)
 
@@ -101,6 +90,7 @@ class MainActivity : Activity() {
         i.data = Uri.parse(url)
         startActivity(i)
          */
+
         browse("http://www.google.es")
 
     }
@@ -119,19 +109,20 @@ class MainActivity : Activity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when(requestCode) {
+        when (requestCode) {
             SUMA_REQUEST ->
-                when(resultCode) {
+                when (resultCode) {
                     Activity.RESULT_OK ->
-                        if(data != null) {
+                        if (data != null) {
                             cajaText.setText(data.getIntExtra("suma", 0).toString())
                         }
                     Activity.RESULT_CANCELED ->
                         Log.d("miApp", "Cancelado")
                 }
             REQUEST_IMAGE_CAPTURE ->
-                if(resultCode == RESULT_OK) {
-                    val imageBitmap = data!!.extras!!.get("data") as Bitmap //con !! se le dice que es seguro que no es nulo
+                if (resultCode == RESULT_OK) {
+                    val imageBitmap =
+                        data!!.extras!!.get("data") as Bitmap //con !! se le dice que es seguro que no es nulo
                     imageView.setImageBitmap(imageBitmap)
                 }
         }
@@ -182,13 +173,6 @@ class MainActivity : Activity() {
     }
 
     private fun dispatchTakePictureIntent() {
-        /*
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if(takePictureIntent.resolveActivity(packageManager) != null) {
-            startActivityForResult(takePictureIntent, )
-        }
-
-         */
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)

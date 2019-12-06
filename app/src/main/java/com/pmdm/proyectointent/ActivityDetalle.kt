@@ -16,7 +16,7 @@ class ActivityDetalle : AppCompatActivity() {
         tResultado.setText(valor)
 
 
-        if(valor == "amarillo") {
+        if (valor == "amarillo") {
             tResultado.setTextColor(Color.YELLOW)
         } else {
             tResultado.setTextColor(Color.RED)
